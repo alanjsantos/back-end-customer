@@ -62,7 +62,7 @@ public class ClienteController {
                                              @PathVariable Long id) throws Exception {
         dto.setId(id);
         Cliente cliente = service.update(modelMapper.map(dto, Cliente.class));
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(modelMapper.map(cliente, ClienteDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(cliente, ClienteDTO.class));
     }
 
     @GetMapping("email/{email}")

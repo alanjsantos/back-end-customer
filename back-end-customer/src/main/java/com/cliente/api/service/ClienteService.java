@@ -45,7 +45,7 @@ public class ClienteService {
             throw new ObjectNotFoundException("Não eixste Clietne na base de Dados com este ID.");
         }
     }
-    
+
     public Cliente update(Cliente cliente) throws Exception {
         findById(cliente.getId());
 
