@@ -75,7 +75,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ClienteDTO> deleteById (@PathVariable Long id) {
+    public ResponseEntity<ClienteDTO> deleteById (@PathVariable Long id) throws Exception {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

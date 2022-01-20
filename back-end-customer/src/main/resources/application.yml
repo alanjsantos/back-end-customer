@@ -6,8 +6,8 @@ spring:
     devtools:
       remote:
         secret: 123
-#  profiles:
-#    active: local
+  profiles:
+    active: local
   jpa:
     hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
     hibernate.ddl-auto: update
