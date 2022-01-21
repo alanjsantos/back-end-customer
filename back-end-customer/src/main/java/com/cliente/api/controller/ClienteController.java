@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class ClienteController {
     private ModelMapper modelMapper;
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> save (@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> save (@Valid @RequestBody ClienteDTO clienteDTO) {
         Cliente cliente = service.save(modelMapper.map(clienteDTO, Cliente.class));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(cliente, ClienteDTO.class));
@@ -51,14 +52,14 @@ public class ClienteController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<ClienteDTO> findById(@Valid @PathVariable Long id) throws Exception {
         Cliente cliente = service.findById(id);
         ClienteDTO body = modelMapper.map(cliente, ClienteDTO.class);
         return ResponseEntity.ok().body(body);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ClienteDTO> update(@RequestBody ClienteDTO dto,
+    public ResponseEntity<ClienteDTO> update(@Valid @RequestBody ClienteDTO dto,
                                              @PathVariable Long id) throws Exception {
         dto.setId(id);
         Cliente cliente = service.update(modelMapper.map(dto, Cliente.class));
@@ -66,7 +67,7 @@ public class ClienteController {
     }
 
     @GetMapping("email/{email}")
-    public ResponseEntity<ClienteDTO> findByEmail(@PathVariable String email) throws Exception {
+    public ResponseEntity<ClienteDTO> findByEmail(@Valid @PathVariable String email) throws Exception {
 
         Cliente cliente = service.findByEmail(email);
         ClienteDTO body = modelMapper.map(cliente, ClienteDTO.class);
@@ -75,7 +76,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<ClienteDTO> deleteById (@PathVariable Long id) throws Exception {
+    public ResponseEntity<ClienteDTO> deleteById (@Valid @PathVariable Long id) throws Exception {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
